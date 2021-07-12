@@ -2,6 +2,7 @@
 #include "stateMachines.h"
 #include "led.h"
 #include "switches.h"
+#include "buzzer.h"
 
 char interruptTime;
 
@@ -24,19 +25,23 @@ void state_advance()		/* alternate between toggling red & green */
   case 1: //fully bright
     interruptTime = 0;
     turn_on_red();
+    buzzer_set_period(2551);
     break;
   case 2: // half dim
     interruptTime = 2;
     turn_on_red();
+    buzzer_set_period(3005);
     break;
   case 3:// full dim
     interruptTime = 0;
     turn_on_red();
     turn_off_red();
+    buzzer_set_period(3889);
     break;
   case 4:
     interruptTime = 0;
     turn_on_red();
+    buzzer_set_period(2551);
     break;
   }
 }
