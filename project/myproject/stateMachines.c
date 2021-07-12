@@ -3,6 +3,8 @@
 #include "led.h"
 #include "switches.h"
 
+char interruptTime;
+
 char turn_on_red(){
   red_on = 1;
   led_changed = 1;
@@ -19,19 +21,23 @@ void state_advance()		/* alternate between toggling red & green */
 {
 
   switch(state){
-  case 1:
+  case 1: //fully bright
+    interruptTime = 0;
     turn_on_red();
     break;
-  case 2:
-    turn_off_red();
+  case 2: // half dim
+    interruptTime = 2;
+    turn_on_red();
     break;
-  case 3:
+  case 3:// full dim
+    interruptTime = 0;
     turn_on_red();
     turn_off_red();
+    break;
   case 4:
+    interruptTime = 0;
     turn_on_red();
-  default:
-    turn_off_red();
+    break;
   }
 }
 
