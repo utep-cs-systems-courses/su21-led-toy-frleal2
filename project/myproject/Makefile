@@ -24,7 +24,7 @@ clean:
 	rm -f *.o *.elf *~
 
 
-led.o: led.c led.h
+led.o: led.s led.h
 wdInterruptHandler.o: stateMachines.h
 stateMachines.o: led.h stateMachines.h
 switches.o: switches.h
